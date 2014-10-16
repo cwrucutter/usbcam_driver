@@ -18,6 +18,6 @@ if __name__ == "__main__":
 
   while not rospy.is_shutdown():
     cvImage = cap.read()
-    rosImageMsg = bridge.cv2_to_imgmsg(cvImage[1], encoding="passthrough")
+    rosImageMsg = bridge.cv2_to_imgmsg(cvImage[1], encoding="bgr8")
     rosImageMsg.header.stamp = rospy.get_rostime()
     imPub.publish(rosImageMsg)

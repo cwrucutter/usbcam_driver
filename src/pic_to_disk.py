@@ -56,11 +56,14 @@ class pic_to_disk(object):
     self.bridge = CvBridge()
     
   def imSubCB(self, msg):
+    #Convert the ROS Image message to a cv2 image object
     cvImage = self.bridge.imgmsg_to_cv2(msg, desired_encoding="bgr8")
     #Create the file name with the format seconds-nanoseconds
     imFileName = "{0}{1}-{2}.jpg".format(self.imPath,msg.header.stamp.secs,msg.header.stamp.nsecs)
+    #And write it to disk
     cv2.imwrite(imFileName,cvImage)
 
+  #self.run just runs a while loop allowing the subscriber to call imSubCB
   def run(self):
     rospy.spin()
 

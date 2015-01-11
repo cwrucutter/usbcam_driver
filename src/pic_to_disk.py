@@ -38,6 +38,7 @@ from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
 
 from os.path import expanduser
+from os.path import isdir
 from os import mkdir
 import cv2
 
@@ -49,8 +50,9 @@ class pic_to_disk(object):
 
     #Set the path of the folder where the images will be stored
     self.imPath = rospy.get_param('~path',"{0}{1}".format(expanduser('~'),'/pic_to_disk/'))
-    #Make the directory so cv2.imwrite can write to it
-    mkdir(self.imPath)
+    #If the directory doesn't exist, make it so cv2.imwrite can write to it
+    if not isdir(self.imPath):
+      mkdir(self.imPath)
 
     #Create bridge to go between ROS messages and openCV images
     self.bridge = CvBridge()

@@ -1,0 +1,9 @@
+<launch>
+
+  <!-- Launch the usbcam_driver node to start taking pictures and publishing them -->
+  <node pkg="usbcam_driver" type="usbcam_driver.py" name="usbcam_driver" output="screen"/>
+
+  <!-- Launch the pic_to_disk node to start saving published pictures to disk -->
+  <node pkg="usbcam_driver" type="pic_to_disk.py" name="pic_to_disk" output="screen"/>
+
+</launch>

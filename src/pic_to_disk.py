@@ -1,4 +1,4 @@
-#!/usr/bin/env python                                                          
+#!/usr/bin/env python
 #
 # Software License Agreement (BSD License)
 #
@@ -46,7 +46,9 @@ class pic_to_disk(object):
   def __init__(self):
     #Init ROS
     rospy.init_node('pic_to_disk')
-    rospy.Subscriber('/camera/image', Image, self.imSubCB)
+
+    topic_in  = rospy.get_param('~topic_in','/camera/image')
+    rospy.Subscriber(topic_in, Image, self.imSubCB)
 
     #Set the path of the folder where the images will be stored
     self.imPath = rospy.get_param('~path',"{0}{1}".format(expanduser('~'),'/pic_to_disk/'))

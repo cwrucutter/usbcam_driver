@@ -41,8 +41,10 @@ class usbcam_driver(object):
   def __init__(self):
     #ROS init
     rospy.init_node('usbcam_driver')
-    self.imPub = rospy.Publisher('/camera/image',Image,queue_size=1)
-    self.cap = cv2.VideoCapture(0) # create video capture object
+    topic_out  = rospy.get_param('~topic_out','/camera/image')
+    device_num = rospy.get_param('~device', 0)
+    self.imPub = rospy.Publisher(topic_out,Image,queue_size=1)
+    self.cap = cv2.VideoCapture(device_num) # create video capture object
     self.bridge = CvBridge() # Create bridge between OpenCV and ROS
 
   def pubImg(self):

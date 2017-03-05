@@ -1,17 +1,4 @@
 <launch>
-  <!-- LEFT CAMERA -->
-  <!-- Launch the usbcam_driver node to start taking pictures and publishing them -->
-  <node pkg="usbcam_driver" type="usbcam_driver.py" name="usbcam_driver_left" output="screen">
-    <param name="device" value="1" type="int"/>
-    <param name="topic_out" value="/camera/left/image" type="string"/>
-  </node>
-
-  <!-- Launch the pic_to_disk node to start saving published pictures to disk -->
-  <node pkg="usbcam_driver" type="pic_to_disk.py" name="pic_to_disk_left" output="screen">
-    <param name="topic_in" value="/camera/left/image" type="string"/>
-    <param name="path" value="/home/snowmower/pic_to_disk/left/" type="string"/>
-  </node>
-
   <!-- RIGHT CAMERA -->
   <!-- Launch the usbcam_driver node to start taking pictures and publishing them -->
   <node pkg="usbcam_driver" type="usbcam_driver.py" name="usbcam_driver_right" output="screen">
